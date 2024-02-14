@@ -185,45 +185,78 @@ static void ListaAlimetos()
         new Alimeto("Frango", 50, 5, "&"),
         new Alimeto("Bacon", 120, 3, "x"),
         new Alimeto("Bife", 60, 2, "*"),
-        new Alimeto("Pizza", 30, 1, "#"),
+        new Alimeto("Pizza", 2, 1, "#"),
         new Alimeto("Lasanha", 90, 4, "!"),
     };
-    foreach (var alimeto in alimentos)
    
+        bool alimentoEncontrado = false;
+         string nomeAlimento = "";
 
-    while (true)
+    do
     {
         Console.Write("Informe o alimeto desejado: ");
         string name = Console.ReadLine();
-        if(alimentos.Any(a => a.Nome.Equals(name, StringComparison.OrdinalIgnoreCase)))
+
+        foreach (var alimeto in alimentos)
         {
-            BuscaDeAlimentos(alimentos, name);
-            break;
+            if (alimentos.Any(a => a.Nome.Equals(name, StringComparison.OrdinalIgnoreCase)))
+            {
+                alimentoEncontrado = true;
+                BuscaDeAlimentos(alimentos, name);
+                break;
+            }
         }
-        else
+
+        if (!alimentoEncontrado)
         {
-            Console.WriteLine("Alimento não encontrado, insira uma opção valida");
+            Console.WriteLine("Alimento não encontrado na lista. Por favor, informe novamente.");
         }
-    }
+
+    } while (!alimentoEncontrado);
+}
 
 
 
   
 
 
-}
+
 
 static void BuscaDeAlimentos(List<Alimeto> lista, string nomeDesejado)
 {
     foreach (Alimeto alimeto in lista)
     {
-            if (alimeto.Nome.Equals(nomeDesejado, StringComparison.OrdinalIgnoreCase))
-            {
-                Console.WriteLine($"O alimento escolhido foi: {nomeDesejado} Nivel de aquecimento: {alimeto.Potencia} tempo estimado: {TimeSpan.FromSeconds(alimeto.TempoDeAquecimento):mm\\:ss}");
+        if (alimeto.Nome.Equals(nomeDesejado, StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine($"\nO alimento escolhido foi: {nomeDesejado} Nivel de aquecimento: {alimeto.Potencia} tempo estimado: {TimeSpan.FromSeconds(alimeto.TempoDeAquecimento):mm\\:ss}");
+            Console.WriteLine("\n");
+            Console.Write("\nCaso deseje esquentar esse alimento precione a tecla 1: ");
+            Console.Write("\nCaso deseje consultar as opções navamente tecle 2: ");
+            string opcaoEscolhida = Console.ReadLine()!;
 
-            TempoDeFuncinamento(TimeSpan.FromSeconds(alimeto.TempoDeAquecimento), alimeto.Potencia, alimeto.Carcter);
-            
-            }        
+            int opcao;
+            if (!int.TryParse(opcaoEscolhida, out opcao))
+            {
+                Console.WriteLine("Opção inválida. Por favor, insira um númesro válido.");
+                return;
+            }
+
+            switch (opcao)
+            {
+                 case 1:
+                 TempoDeFuncinamento(TimeSpan.FromSeconds(alimeto.TempoDeAquecimento), alimeto.Potencia, alimeto.Carcter);
+                    break;
+
+                 case 2:
+                    ListaAlimetos();
+                    break;
+            }
+
+
+
+
+            break;
+        }     
     }
 
     
