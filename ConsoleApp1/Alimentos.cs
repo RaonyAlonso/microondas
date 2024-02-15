@@ -21,12 +21,13 @@ public class Alimento
             Interface usuario = new Interface();
             if (alimeto.Nome.Equals(nomeDesejado, StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine($"\nO alimento escolhido foi: {nomeDesejado} Nivel de aquecimento: {alimeto.Potencia} tempo estimado: {TimeSpan.FromSeconds(alimeto.TempoDeAquecimento):mm\\:ss}");
+                Console.Clear();
+                Console.WriteLine($"\n O alimento escolhido foi: {nomeDesejado}\n Nivel de aquecimento programado: {alimeto.Potencia} \n Tempo definido: {TimeSpan.FromSeconds(alimeto.TempoDeAquecimento):mm\\:ss}");
                 Console.WriteLine("\n");
-                Console.WriteLine("Caso deseje esquentar esse alimento precione a tecle 1: ");
-                Console.WriteLine("Caso deseje consultar as opções navamente tecle 2: ");
+                Console.WriteLine("Caso deseje preparar o alimento escolhido tecle 1: ");
+                Console.WriteLine("Caso deseje consultar as opções novamente tecle 2: ");
                 Console.WriteLine("caso deseje voltar para o modo manual tecle 3");
-                Console.Write("Informe a opção escolhida: ");
+                Console.Write("\nInforme a opção escolhida: ");
                 int opcao;
                 do
                 {
@@ -92,11 +93,39 @@ public class Alimento
 
         } while (string.IsNullOrWhiteSpace(nome));
 
-        Console.Write("Tempo de aquecimento (em segundos): ");
-        int tempoAquecimento = Convert.ToInt32(Console.ReadLine());
+        int tempoAquecimento;
+        do
+        {
+            Console.Write("Tempo de aquecimento (em segundos, entre 1 e 120): ");
+            string tempoAquecimentoStr = Console.ReadLine();
+            if (!int.TryParse(tempoAquecimentoStr, out tempoAquecimento) || tempoAquecimento < 1 || tempoAquecimento > 120)
+            {
+                Console.WriteLine("Valor não reconhecido");
+            }
+            else
+            {
+                break;
+            }
+        } while (true);
 
-        Console.Write("Nível de potência: ");
-        int potencia = Convert.ToInt32(Console.ReadLine());
+        int potencia = 10;
+        do
+        {
+            Console.Write("Nível da potência: ");
+            string potenciaStr = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(potenciaStr))
+            {
+                break;
+            }
+            else if (!int.TryParse(potenciaStr, out potencia) || potencia < 1 || potencia > 10)
+            {
+                Console.WriteLine("Nível inválido. Por favor, insira um valor inteiro entre 1 e 10.");
+            }
+            else
+            {
+                break;
+            }
+        } while (true);
 
         Console.Write("Caractere de aquecimento: ");
         string caracter = Console.ReadLine();

@@ -33,38 +33,40 @@ using System.Threading.Tasks;
 
         } while (true);
 
-        int pontencia;
+        int potencia = 10;
         do
         {
             Console.Write("Digite a potência: ");
-            string input = Console.ReadLine()!;
 
 
 
-            if (!int.TryParse(input, out pontencia))
+            string potenciaStr = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(potenciaStr))
             {
-                Console.WriteLine("Por favor, insira um número válido.");
-                continue;
+                break;
             }
-
-            if (pontencia < 1 || pontencia > 10)
+            else if (!int.TryParse(potenciaStr, out potencia) || potencia < 1 || potencia > 10)
             {
-                Console.WriteLine("Por favor, insira um valor de 1 a 10.");
-                continue;
+                Console.WriteLine("Nível inválido. Por favor, insira um valor inteiro entre 1 e 10.");
             }
-            break;
+            else
+            {
+                break;
+            }
         } while (true);
 
 
         TimeSpan tempo = TimeSpan.FromSeconds(tempoSegundos);
 
-        TempoDeFuncinamento(tempo, pontencia);
+        TempoDeFuncinamento(tempo, potencia);
 
 
 
     }
-   public  void TempoDeFuncinamento(TimeSpan tempoTotal , int potencia = 8, string carcter = ("."))
+   public  void TempoDeFuncinamento(TimeSpan tempoTotal , int potencia = 10, string carcter = ("."))
     {
+        bool pausado = false;
+        bool cancelado = false;
         Interface usuario = new Interface();
 
         int segundosTotais = (int)tempoTotal.TotalSeconds;
@@ -74,6 +76,7 @@ using System.Threading.Tasks;
 
         for (int segundos = segundosTotais; segundos >= 0; segundos--)
         {
+            Console.WriteLine("Caso deseja pausar precione a tecla P");
             Console.WriteLine($"Tempo restante: {TimeSpan.FromSeconds(segundos):mm\\:ss}");
 
             Console.WriteLine(sb.ToString());
@@ -83,10 +86,41 @@ using System.Threading.Tasks;
 
 
             }
+            while (pausado)
+            {
+                Console.WriteLine("Pausado. Pressione 'C' para continuar ou 'X' para cancelar.");
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                switch (keyInfo.KeyChar)
+                {
+                    case 'C':
+                    case 'c':
+                        Console.WriteLine("Continuando...");
+                        pausado = false;
+                        break;
+                    case 'X':
+                    case 'x':
+                        Console.WriteLine("Cancelado pelo usuário.");
+                        cancelado = true;
+                        pausado = false;
+                        usuario.ExibirOpçõesDeAlimetosDisponiveis();
+                        break;
+                }
+            }
+            if (cancelado)
+                return;
 
             Thread.Sleep(1000);
 
+            
             Console.Clear();
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.KeyChar == 'P' || keyInfo.KeyChar == 'p')
+                {
+                    pausado = true;
+                }
+            }
 
         }
 
@@ -102,7 +136,7 @@ using System.Threading.Tasks;
     public void Automatico()
     {
         TimeSpan rapído = TimeSpan.FromSeconds(30);
-        TempoDeFuncinamento(rapído);
+        TempoDeFuncinamento(rapído, 8);
     }
 
    

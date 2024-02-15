@@ -11,6 +11,7 @@ public class Interface
    
     public void ExibirOpçõesDeAlimetosDisponiveis()
     {
+        Console.Clear();
         Alimento alimento = new Alimento();
         Microondas microondas = new Microondas();
         Console.WriteLine(@"
