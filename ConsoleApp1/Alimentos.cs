@@ -121,7 +121,6 @@ public class Alimento
         Console.WriteLine("3 - Para voltar ao modo manual");
         Console.WriteLine("\n");
         Console.Write("Informe a opção escolhida: ");
-        string opcaoEscolhida = Console.ReadLine()!;
         int opcao;
 
         do
@@ -135,12 +134,6 @@ public class Alimento
                 break;
             }
         } while (true);
-
-        if (!int.TryParse(opcaoEscolhida, out opcao))
-        {
-            Console.WriteLine("Opção inválida. Por favor, insira um númesro válido.");
-            return;
-        }
         switch (opcao)
         {
             case 1:
