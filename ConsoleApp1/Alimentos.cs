@@ -26,7 +26,7 @@ public class Alimento
                 Console.WriteLine("\n");
                 Console.WriteLine("Caso deseje preparar o alimento escolhido tecle 1: ");
                 Console.WriteLine("Caso deseje consultar as opções novamente tecle 2: ");
-                Console.WriteLine("caso deseje voltar para o modo manual tecle 3");
+                Console.WriteLine("caso deseje voltar para o menu principal tecle 3");
                 Console.Write("\nInforme a opção escolhida: ");
                 int opcao;
                 do
@@ -45,7 +45,7 @@ public class Alimento
                 {
                     case 1:
                         Microondas microondas1 = new Microondas();
-                        microondas1.TempoDeFuncinamento(TimeSpan.FromSeconds(alimeto.TempoDeAquecimento), alimeto.Potencia, alimeto.Carcter);
+                        microondas1.Aquecer(TimeSpan.FromSeconds(alimeto.TempoDeAquecimento), alimeto.Potencia, alimeto.Carcter);
                         break;
 
                     case 2:

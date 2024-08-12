@@ -58,12 +58,12 @@ using System.Threading.Tasks;
 
         TimeSpan tempo = TimeSpan.FromSeconds(tempoSegundos);
 
-        TempoDeFuncinamento(tempo, potencia);
+        Aquecer(tempo, potencia);
 
 
 
     }
-   public  void TempoDeFuncinamento(TimeSpan tempoTotal , int potencia = 10, string carcter = ("."))
+   public  void Aquecer(TimeSpan tempoTotal , int potencia = 10, string carcter = ("."))
     {
         bool pausado = false;
         bool cancelado = false;
@@ -136,7 +136,7 @@ using System.Threading.Tasks;
     public void Automatico()
     {
         TimeSpan rapído = TimeSpan.FromSeconds(30);
-        TempoDeFuncinamento(rapído, 8);
+        Aquecer(rapído, 8);
     }
 
    
