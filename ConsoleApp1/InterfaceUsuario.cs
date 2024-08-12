@@ -49,7 +49,7 @@ public class Interface
         {
             case 1:
                 Console.Clear();
-                microondas.ParametrizaçãoTempoEPotencia();
+                microondas.ParametrizacaoTempoEPotencia();
                 break;
 
             case 2:

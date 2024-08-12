@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-    class Microondas
-    {
-    
-   public void ParametrizaçãoTempoEPotencia()
+public class Microondas
+{
+    public void ParametrizacaoTempoEPotencia()
     {
         Interface usuario = new Interface();
         Console.WriteLine("Digite o tempo desejado em segundos (mínimo 1 segundo, máximo 120 segundos - equivalente a 2 minutos):");
@@ -38,8 +37,6 @@ using System.Threading.Tasks;
         {
             Console.Write("Digite a potência: ");
 
-
-
             string potenciaStr = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(potenciaStr))
             {
@@ -55,15 +52,12 @@ using System.Threading.Tasks;
             }
         } while (true);
 
-
         TimeSpan tempo = TimeSpan.FromSeconds(tempoSegundos);
 
         Aquecer(tempo, potencia);
-
-
-
     }
-   public  void Aquecer(TimeSpan tempoTotal , int potencia = 10, string carcter = ("."))
+
+    public void Aquecer(TimeSpan tempoTotal, int potencia = 10, string caracterAquecimento = ".")
     {
         bool pausado = false;
         bool cancelado = false;
@@ -71,8 +65,6 @@ using System.Threading.Tasks;
 
         int segundosTotais = (int)tempoTotal.TotalSeconds;
         StringBuilder sb = new StringBuilder();
-
-
 
         for (int segundos = segundosTotais; segundos >= 0; segundos--)
         {
@@ -82,10 +74,9 @@ using System.Threading.Tasks;
             Console.WriteLine(sb.ToString());
             for (int i = 0; i < potencia; i++)
             {
-                sb.Append(carcter);
-
-
+                sb.Append(caracterAquecimento);
             }
+
             while (pausado)
             {
                 Console.WriteLine("Pausado. Pressione 'C' para continuar ou 'X' para cancelar.");
@@ -102,16 +93,18 @@ using System.Threading.Tasks;
                         Console.WriteLine("Cancelado pelo usuário.");
                         cancelado = true;
                         pausado = false;
-                        usuario.ExibirOpçõesDeAlimetosDisponiveis();
                         break;
                 }
             }
+
             if (cancelado)
+            {
+                ExibirMenuAposAquecimento(usuario);
                 return;
+            }
 
             Thread.Sleep(1000);
 
-            
             Console.Clear();
             if (Console.KeyAvailable)
             {
@@ -121,24 +114,32 @@ using System.Threading.Tasks;
                     pausado = true;
                 }
             }
-
         }
 
-        Console.WriteLine("Aquecida ");
-        Console.WriteLine("\nPressione qualquer tecla para continuar...");
-        Console.ReadKey();
-        Console.Clear();
-        usuario.ExibirOpçõesDeAlimetosDisponiveis();
-
-
+        Console.WriteLine("Aquecido!");
+        ExibirMenuAposAquecimento(usuario);
     }
 
     public void Automatico()
     {
-        TimeSpan rapído = TimeSpan.FromSeconds(30);
-        Aquecer(rapído, 8);
+        TimeSpan rapido = TimeSpan.FromSeconds(30);
+        Aquecer(rapido, 8);
     }
 
-   
+    private void ExibirMenuAposAquecimento(Interface usuario)
+    {
+        try
+        {
+            Console.WriteLine("\nPressione qualquer tecla para continuar...");
+            Console.ReadKey();
+            Console.Clear();
+            usuario.ExibirOpçõesDeAlimetosDisponiveis();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Ocorreu um erro ao exibir o menu: " + ex.Message);
+            
+        }
+    }
 }
 
