@@ -10,8 +10,16 @@ namespace ConsoleApp1
     {
         static void Main()
         {
-            Interface usuario = new Interface();
-            usuario.ExibirOpçõesDeAlimetosDisponiveis();
+            try
+            {
+                Interface usuario = new Interface();
+                usuario.ExibirOpcoesDeAlimetosDisponiveis();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocorreu um erro: " + ex.Message);
+                
+            }
         }
     }
 }

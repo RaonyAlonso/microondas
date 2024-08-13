@@ -7,13 +7,9 @@ using System.Collections.Generic;
 
 public class Interface
 {
-    
-   
-    public void ExibirOpçõesDeAlimetosDisponiveis()
+    public void ExibirOpcoesDeAlimetosDisponiveis()
     {
         Console.Clear();
-        Alimento alimento = new Alimento();
-        Microondas microondas = new Microondas();
         Console.WriteLine(@"
 ███╗░░░███╗██╗░█████╗░██████╗░░█████╗░  ░█████╗░███╗░░██╗██████╗░░█████╗░░██████╗
 ████╗░████║██║██╔══██╗██╔══██╗██╔══██╗  ██╔══██╗████╗░██║██╔══██╗██╔══██╗██╔════╝
@@ -21,7 +17,6 @@ public class Interface
 ██║╚██╔╝██║██║██║░░██╗██╔══██╗██║░░██║  ██║░░██║██║╚████║██║░░██║██╔══██║░╚═══██╗
 ██║░╚═╝░██║██║╚█████╔╝██║░░██║╚█████╔╝  ╚█████╔╝██║░╚███║██████╔╝██║░░██║██████╔╝
 ╚═╝░░░░░╚═╝╚═╝░╚════╝░╚═╝░░╚═╝░╚════╝░  ░╚════╝░╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝╚═════╝░");
-
 
         int opcao;
 
@@ -49,40 +44,36 @@ public class Interface
         {
             case 1:
                 Console.Clear();
-                microondas.ParametrizaçãoTempoEPotencia();
+                new Microondas().ParametrizacaoTempoEPotencia();
                 break;
 
             case 2:
-                microondas.Automatico();
+                new Microondas().Automatico();
                 break;
+
             case 3:
                 Console.Clear();
-                alimento.ListaAlimetos();
-
+                new Alimento().ListarAlimentos();
                 break;
 
             case 4:
-
+                Environment.Exit(0);
                 break;
-
-
-
         }
-
     }
-
 }
 
 
 
- 
 
 
 
 
 
 
-    
+
+
+
 
 
 
