@@ -133,7 +133,7 @@ public class Microondas
             Console.WriteLine("\nPressione qualquer tecla para continuar...");
             Console.ReadKey();
             Console.Clear();
-            usuario.ExibirOpçõesDeAlimetosDisponiveis();
+            usuario.ExibirOpcoesDeAlimetosDisponiveis();
         }
         catch (Exception ex)
         {

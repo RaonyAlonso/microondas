@@ -13,7 +13,7 @@ namespace ConsoleApp1
             try
             {
                 Interface usuario = new Interface();
-                usuario.ExibirOpçõesDeAlimetosDisponiveis();
+                usuario.ExibirOpcoesDeAlimetosDisponiveis();
             }
             catch (Exception ex)
             {
