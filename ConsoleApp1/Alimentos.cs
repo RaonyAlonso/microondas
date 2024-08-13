@@ -12,7 +12,7 @@ public class Alimento
     public int Potencia { get; }
     public string CaracterAquecimento { get; }
 
-    public Alimento(string nome, int tempoDeAquecimento, int potencia, string caracterAquecimento)
+    public Alimento(string nome = null, int tempoDeAquecimento = 0, int potencia = 0, string caracterAquecimento = null)
     {
         Nome = nome;
         Potencia = potencia;

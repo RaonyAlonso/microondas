@@ -53,7 +53,7 @@ public class Interface
 
             case 3:
                 Console.Clear();
-                new Alimento("s", 1, 2, "#").ListarAlimentos();
+                new Alimento().ListarAlimentos();
                 break;
 
             case 4:
