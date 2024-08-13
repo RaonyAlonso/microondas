@@ -71,7 +71,7 @@ public class Alimento
                         break;
                     case 3:
                         Console.Clear();
-                        new Interface().ExibirOpcoesDeAlimetosDisponiveis();
+                        new MenuPrincipal().ExibirOpcoesDeAlimetosDisponiveis();
                         break;
                 }
                 break; 
@@ -177,7 +177,7 @@ public class Alimento
                 break;
             case 3:
                 Console.Clear();
-                new Interface().ExibirOpcoesDeAlimetosDisponiveis();
+                new MenuPrincipal().ExibirOpcoesDeAlimetosDisponiveis();
                 break;
         }
     }
