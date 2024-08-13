@@ -8,7 +8,7 @@ public class Microondas
 {
     public void ParametrizacaoTempoEPotencia()
     {
-        Interface usuario = new Interface();
+        MenuPrincipal usuario = new MenuPrincipal();
         Console.WriteLine("Digite o tempo desejado em segundos (mínimo 1 segundo, máximo 120 segundos - equivalente a 2 minutos):");
         int tempoSegundos;
         do
@@ -35,8 +35,7 @@ public class Microondas
         int potencia = 10;
         do
         {
-            Console.Write("Digite a potência: ");
-
+            Console.Write("Nível da potência (opcional, 1-10, pressione Enter para usar o padrão 10): ");
             string potenciaStr = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(potenciaStr))
             {
@@ -44,7 +43,7 @@ public class Microondas
             }
             else if (!int.TryParse(potenciaStr, out potencia) || potencia < 1 || potencia > 10)
             {
-                Console.WriteLine("Nível inválido. Por favor, insira um valor inteiro entre 1 e 10.");
+                Console.WriteLine("Nível inválido. Por favor, insira um valor inteiro entre 1 e 10 ou pressione Enter para usar o padrão.");
             }
             else
             {
@@ -61,7 +60,7 @@ public class Microondas
     {
         bool pausado = false;
         bool cancelado = false;
-        Interface usuario = new Interface();
+        MenuPrincipal usuario = new MenuPrincipal();
 
         int segundosTotais = (int)tempoTotal.TotalSeconds;
         StringBuilder sb = new StringBuilder();
@@ -126,7 +125,7 @@ public class Microondas
         Aquecer(rapido, 8);
     }
 
-    private void ExibirMenuAposAquecimento(Interface usuario)
+    private void ExibirMenuAposAquecimento(MenuPrincipal usuario)
     {
         try
         {

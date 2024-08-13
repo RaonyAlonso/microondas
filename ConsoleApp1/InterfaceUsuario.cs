@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 
 
-public class Interface
+public class MenuPrincipal
 {
     public void ExibirOpcoesDeAlimetosDisponiveis()
     {
